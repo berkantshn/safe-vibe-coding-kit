@@ -118,6 +118,9 @@ PROGRESS.md dosyası her /yukle çalıştığında güncellenir ve şu sabit
 
 ## Push Öncesi Kontrol
 - Push etmeden önce kodun çalıştığını/hata vermediğini kontrol et
+- Commit'ten önce (dosyalar staged iken) secret taraması çalıştır:
+  `python ~/.claude/scripts/secret_scan.py .` — bulgu varsa veya tarama
+  yapılamazsa commit atma, dur ve bildir (secret değerini asla yazma)
 - Test dosyaları varsa push öncesi çalıştır. Testler başarısız olursa dur
   ve bildir; proje test içermiyorsa (test dosyası yoksa) bu adımı bilgi
   amaçlı belirt ve devam et — ikisini birbirine karıştırma

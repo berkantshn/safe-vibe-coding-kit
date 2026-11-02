@@ -2,7 +2,11 @@
 
 A ready-to-use rule set and two slash commands for people who build real projects with [Claude Code](https://claude.com/claude-code) without being software developers. It came out of daily use by an electrical engineer who ships apps, bots and games this way.
 
-**Türkçe açıklama aşağıda.**
+**[⬇ Download the latest version](https://github.com/berkantshn/safe-vibe-coding-kit/releases/latest/download/safe-vibe-coding-kit.zip)** · **Türkçe açıklama aşağıda.**
+
+![The secret scan stopping a commit that contains a fake test token](docs/demo.gif)
+
+*Real terminal output: the scan stops a commit containing a fake test token, then passes once the file is fixed.*
 
 ## What you get
 
@@ -11,10 +15,11 @@ A ready-to-use rule set and two slash commands for people who build real project
 | `CLAUDE.md` | Global rules: security, commits, branch + pull request flow, reporting, and actions that always need your approval |
 | `commands/ship.md` (`yukle.md` in Turkish) | Runs the upload to GitHub, for first upload or update, with secret checks, tests and a PR |
 | `commands/resume.md` (`devam.md` in Turkish) | Read-only summary of where you left off, at the start of each session |
+| `scripts/secret_scan.py` | Secret scan of git history and staged files. Downloads gitleaks at a fixed version and verifies its checksum |
 
 Why it helps:
 
-- Secrets stay out of git, with clear steps if one leaks.
+- Secrets stay out of git: a [gitleaks](https://github.com/gitleaks/gitleaks) scan runs before every commit, and there are clear steps if one leaks.
 - Claude asks before risky actions such as force push, deleting files or changing visibility.
 - `PROGRESS.md` lets you continue on another computer.
 - Claude explains the terms it uses, so you learn as you build.
@@ -42,25 +47,25 @@ remote: - Changes must be made through a pull request.
 
 Back up any existing `CLAUDE.md` and commands first, because these commands overwrite files with the same name.
 
-**Windows (PowerShell):**
+**Windows (PowerShell):** [download the zip](https://github.com/berkantshn/safe-vibe-coding-kit/releases/latest/download/safe-vibe-coding-kit.zip), extract it, open PowerShell in that folder and run:
 
 ```powershell
-git clone https://github.com/berkantshn/safe-vibe-coding-kit.git
-New-Item -ItemType Directory -Force "$HOME\.claude\commands" | Out-Null
-Copy-Item safe-vibe-coding-kit\en\CLAUDE.md "$HOME\.claude\CLAUDE.md"
-Copy-Item safe-vibe-coding-kit\en\commands\*.md "$HOME\.claude\commands\"
+New-Item -ItemType Directory -Force "$HOME\.claude\commands", "$HOME\.claude\scripts" | Out-Null
+Copy-Item en\CLAUDE.md "$HOME\.claude\CLAUDE.md"
+Copy-Item en\commands\*.md "$HOME\.claude\commands\"
+Copy-Item scripts\secret_scan.py "$HOME\.claude\scripts\"
 ```
 
-**macOS / Linux:**
+**macOS / Linux:** download and extract the zip, open a terminal in that folder and run:
 
 ```bash
-git clone https://github.com/berkantshn/safe-vibe-coding-kit.git
-mkdir -p ~/.claude/commands
-cp safe-vibe-coding-kit/en/CLAUDE.md ~/.claude/CLAUDE.md
-cp safe-vibe-coding-kit/en/commands/*.md ~/.claude/commands/
+mkdir -p ~/.claude/commands ~/.claude/scripts
+cp en/CLAUDE.md ~/.claude/CLAUDE.md
+cp en/commands/*.md ~/.claude/commands/
+cp scripts/secret_scan.py ~/.claude/scripts/
 ```
 
-You also need [Git](https://git-scm.com/) and the [GitHub CLI](https://cli.github.com/) (`gh auth login`).
+You also need [Git](https://git-scm.com/), [Python 3](https://www.python.org/) and the [GitHub CLI](https://cli.github.com/) (`gh auth login`).
 
 ## Use
 
@@ -89,6 +94,7 @@ Yazılımcı olmadan [Claude Code](https://claude.com/claude-code) ile gerçek p
 | `tr/CLAUDE.md` | Genel kurallar: güvenlik, commit, branch + PR akışı, raporlama, onay gerektiren işlemler |
 | `tr/commands/yukle.md` | `/yukle`: projeyi GitHub'a yükler veya günceller |
 | `tr/commands/devam.md` | `/devam`: kaldığın yeri salt-okunur olarak özetler |
+| `scripts/secret_scan.py` | Git geçmişi ve commit'e girecek dosyalarda secret taraması: gitleaks'i sabit sürümle indirir, checksum ile doğrular |
 
 ### Önce ve sonra
 
@@ -105,25 +111,25 @@ Bu kuralları kendi projelerimde kullanmanın gerçek sonuçları:
 
 Önce mevcut `CLAUDE.md` ve komut dosyalarının yedeğini al; aynı adlı dosyaların üzerine yazılır.
 
-**Windows (PowerShell):**
+**Windows (PowerShell):** [zip'i indir](https://github.com/berkantshn/safe-vibe-coding-kit/releases/latest/download/safe-vibe-coding-kit.zip), çıkart, o klasörde PowerShell aç ve çalıştır:
 
 ```powershell
-git clone https://github.com/berkantshn/safe-vibe-coding-kit.git
-New-Item -ItemType Directory -Force "$HOME\.claude\commands" | Out-Null
-Copy-Item safe-vibe-coding-kit\tr\CLAUDE.md "$HOME\.claude\CLAUDE.md"
-Copy-Item safe-vibe-coding-kit\tr\commands\*.md "$HOME\.claude\commands\"
+New-Item -ItemType Directory -Force "$HOME\.claude\commands", "$HOME\.claude\scripts" | Out-Null
+Copy-Item tr\CLAUDE.md "$HOME\.claude\CLAUDE.md"
+Copy-Item tr\commands\*.md "$HOME\.claude\commands\"
+Copy-Item scripts\secret_scan.py "$HOME\.claude\scripts\"
 ```
 
-**macOS / Linux:**
+**macOS / Linux:** zip'i indirip çıkart, o klasörde terminal aç ve çalıştır:
 
 ```bash
-git clone https://github.com/berkantshn/safe-vibe-coding-kit.git
-mkdir -p ~/.claude/commands
-cp safe-vibe-coding-kit/tr/CLAUDE.md ~/.claude/CLAUDE.md
-cp safe-vibe-coding-kit/tr/commands/*.md ~/.claude/commands/
+mkdir -p ~/.claude/commands ~/.claude/scripts
+cp tr/CLAUDE.md ~/.claude/CLAUDE.md
+cp tr/commands/*.md ~/.claude/commands/
+cp scripts/secret_scan.py ~/.claude/scripts/
 ```
 
-[Git](https://git-scm.com/) ve [GitHub CLI](https://cli.github.com/) (`gh auth login`) gerekir.
+[Git](https://git-scm.com/), [Python 3](https://www.python.org/) ve [GitHub CLI](https://cli.github.com/) (`gh auth login`) gerekir.
 
 ### Kullanım
 

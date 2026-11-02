@@ -102,6 +102,10 @@ belirt ve devam et — ikisini birbirine karıştırma.
 11. İLK COMMIT VE GITHUB
 (İlk yüklemede henüz main olmadığı için bu commit doğrudan main'e atılır;
 PR akışı bir sonraki /yukle'den itibaren geçerlidir.)
+- Commit'ten hemen önce, dosyalar staged iken secret taramasını çalıştır:
+  `python ~/.claude/scripts/secret_scan.py .`
+  Çıkış 0 ise devam et. Çıkış 1 (bulgu) veya 2 (tarama yapılamadı) ise commit
+  atma, dur ve incele; değeri ekrana yazma
 - Staged değişikliklerin diff'ini analiz ederek conventional commits
   formatında uygun bir ilk commit mesajı üret (diff'in kendisini bana
   dökme, sadece üretilen commit mesajını göster) ve commit'i at
@@ -192,6 +196,10 @@ Aynı kural: test başarısızsa dur; test yoksa bilgi ver ve devam et.
   - Zaten bir feature/fix/chore/docs branch'indeysen onu kullan
   - Çalışma dizinindeki değişiklikler birbirinden bağımsız birden fazla
     konu içeriyorsa, nasıl ayrılacağını bana kısaca sor
+- Commit'ten hemen önce, dosyalar staged iken secret taramasını çalıştır:
+  `python ~/.claude/scripts/secret_scan.py .`
+  Çıkış 0 ise devam et. Çıkış 1 (bulgu) veya 2 (tarama yapılamadı) ise commit
+  atma, dur ve incele; değeri ekrana yazma
 - Staged değişikliklerin diff'ini analiz ederek uygun commit mesajını
   üret (diff'in kendisini bana dökme, sadece üretilen mesajı göster) ve
   commit'le
@@ -211,6 +219,7 @@ Aynı kural: test başarısızsa dur; test yoksa bilgi ver ve devam et.
 
 ## SONUÇ RAPORU
 Şu adımların her birinin durumunu ayrı ayrı söyle:
+- Secret taraması: temiz / bulgu var (kaç tane, neye karar verildi) / yapılamadı
 - Git commit: başarılı / başarısız
 - GitHub push: başarılı / başarısız
 - Pull Request: merge edildi / açık kaldı (neden) / başarısız — PR linkiyle

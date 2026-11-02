@@ -24,6 +24,7 @@ If `origin` points to an unexpected repository, STOP. Do not change it; explain 
 9. Detect the package manager; use pnpm only for a new JS/Node project without one.
 10. Run tests and lint if present. If tests fail, stop. If none exist, say so and continue.
 11. Commit and publish. This first commit goes directly to main:
+    - With files staged, run `python ~/.claude/scripts/secret_scan.py .` right before committing. Exit 0: continue. Exit 1 or 2: do not commit, stop and review; never print the value.
     - Write the conventional commit message from the diff and show only the message.
     - If the repository does not exist, create it as **private**. If it exists, use it and tell me.
     - `git fetch`, then push.
@@ -41,6 +42,7 @@ If `origin` points to an unexpected repository, STOP. Do not change it; explain 
 6. Run tests and lint. If tests fail, stop.
 7. Git and pull request:
    - On main: create a suitable prefixed branch; uncommitted changes move with it. On a work branch: use it. If changes cover unrelated topics, ask how to split them.
+   - With files staged, run `python ~/.claude/scripts/secret_scan.py .` right before committing. Exit 0: continue. Exit 1 or 2: do not commit, stop and review; never print the value.
    - Write the commit message from the diff, show only the message, and commit.
    - `git fetch`. If the remote has unexpected commits, do not rebase, merge, force or pull; explain and ask.
    - Push and open a PR, or reuse the open PR for this branch.
@@ -49,6 +51,7 @@ If `origin` points to an unexpected repository, STOP. Do not change it; explain 
 
 ## Final report
 Report each separately:
+- Secret scan: clean / findings (how many, what was decided) / could not run
 - Git commit: success / failure
 - GitHub push: success / failure
 - Pull request: merged / left open (why) / failed, with link ("first upload, no PR" on first upload)
