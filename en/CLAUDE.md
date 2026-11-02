@@ -67,6 +67,7 @@ Update `PROGRESS.md` on every `/ship`, using this exact template so `/resume` ca
 
 ## Before pushing
 - Check that the code runs.
+- Before committing, with files staged, run `python ~/.claude/scripts/secret_scan.py .`. If it finds something or cannot run, do not commit; stop and tell me. Never print a secret value.
 - Run tests if they exist. If tests fail, stop and tell me. If there are no tests, say so and continue; do not confuse the two cases.
 - Run lint/format tools if the project has them.
 - Do not commit logs, caches or temporary files.
