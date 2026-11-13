@@ -29,6 +29,11 @@
       "note": "Lets Claude open your site or app in a browser and test it (needs Node.js)"
     },
     {
+      "id": "frontend-design@claude-plugins-official",
+      "group": "core",
+      "note": "Distinctive UI design instead of templated AI looks (plans palette, type and layout first). Only active for UI work"
+    },
+    {
       "id": "security-guidance@claude-plugins-official",
       "group": "core",
       "note": "Security warnings while Claude edits code, plus an AI review on code-changing turns and commits (uses extra quota)"
