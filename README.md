@@ -80,6 +80,7 @@ The installer adds these from Anthropic's official catalog:
 | superpowers | Asks what you really want, shows a design, writes a plan, then builds it test-first |
 | context7 | Fetches current documentation for the libraries you use, so Claude does not write outdated code |
 | playwright | Lets Claude open your site or app in a real browser, click through it and take screenshots |
+| frontend-design | Makes your pages look designed rather than AI-generated: plans colors, fonts and layout first. To keep an existing look, just say "stay with the current design" |
 | security-guidance | Warns about dangerous code while Claude edits, and runs an AI security review on code-changing turns and commits |
 | typescript-lsp, php-lsp | *Optional.* Code intelligence for TypeScript/JavaScript and PHP |
 
@@ -169,6 +170,7 @@ Yükleyici Anthropic'in resmi katalogundan şunları kurar:
 | superpowers | Ne istediğini sorar, tasarımı gösterir, plan yazar, sonra önce testleri yazarak uygular |
 | context7 | Kullandığın kütüphanelerin güncel dokümantasyonunu getirir; Claude eski yöntemle kod yazmaz |
 | playwright | Claude'un siteni veya uygulamanı gerçek bir tarayıcıda açıp gezmesini, ekran görüntüsü almasını sağlar |
+| frontend-design | Sayfalarının yapay zekâ yapmış gibi değil, tasarlanmış gibi görünmesini sağlar: önce renk, yazı tipi ve düzeni planlar. Mevcut görünümü korumak için "mevcut tasarıma sadık kal" demen yeterli |
 | security-guidance | Claude kod yazarken tehlikeli kalıplar için uyarır; kod değişen turlarda ve commit'te yapay zekâ ile güvenlik incelemesi yapar |
 | typescript-lsp, php-lsp | *İsteğe bağlı.* TypeScript/JavaScript ve PHP için kod zekâsı |
 
