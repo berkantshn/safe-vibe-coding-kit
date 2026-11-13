@@ -1,0 +1,70 @@
+{
+  "_comment": "Made By FALCREB. Plugins and tools that install.py sets up. Versions of npm tools are pinned so every machine gets the same one; bump them on purpose, never to 'latest' blindly.",
+  "marketplaces": [
+    {
+      "name": "claude-plugins-official",
+      "source": "anthropics/claude-plugins-official",
+      "note": "Anthropic's official plugin catalog (auto-updates by default)"
+    },
+    {
+      "name": "anthropic-agent-skills",
+      "source": "anthropics/skills",
+      "note": "Anthropic's skills catalog. Added as a catalog only: the document skills (pdf, docx, xlsx, pptx) already come with a claude.ai account"
+    }
+  ],
+  "plugins": [
+    {
+      "id": "superpowers@claude-plugins-official",
+      "group": "core",
+      "note": "Asks what you really want, writes a plan, then builds it test-first"
+    },
+    {
+      "id": "context7@claude-plugins-official",
+      "group": "core",
+      "note": "Up-to-date library documentation, so Claude does not write outdated code"
+    },
+    {
+      "id": "playwright@claude-plugins-official",
+      "group": "core",
+      "note": "Lets Claude open your site or app in a browser and test it (needs Node.js)"
+    },
+    {
+      "id": "security-guidance@claude-plugins-official",
+      "group": "core",
+      "note": "Security warnings while Claude edits code, plus an AI review on code-changing turns and commits (uses extra quota)"
+    },
+    {
+      "id": "typescript-lsp@claude-plugins-official",
+      "group": "lsp",
+      "note": "Code intelligence for TypeScript/JavaScript"
+    },
+    {
+      "id": "php-lsp@claude-plugins-official",
+      "group": "lsp",
+      "note": "Code intelligence for PHP"
+    }
+  ],
+  "npm_tools": [
+    {
+      "package": "typescript-language-server",
+      "version": "6.1.0",
+      "command": "typescript-language-server",
+      "group": "lsp",
+      "note": "Language server used by typescript-lsp"
+    },
+    {
+      "package": "typescript",
+      "version": "5.9.3",
+      "command": "tsc",
+      "group": "lsp",
+      "note": "Fallback when a project has no TypeScript of its own. Check language server support before moving to 7.x"
+    },
+    {
+      "package": "intelephense",
+      "version": "1.18.5",
+      "command": "intelephense",
+      "group": "lsp",
+      "note": "Language server used by php-lsp"
+    }
+  ]
+}
