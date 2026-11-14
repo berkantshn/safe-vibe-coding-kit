@@ -49,7 +49,7 @@ remote: - Changes must be made through a pull request.
 
 ## Install
 
-You need [Claude Code](https://code.claude.com/docs/en/quickstart) (open it once and sign in), [Git](https://git-scm.com/), [Python 3](https://www.python.org/), [Node.js LTS](https://nodejs.org/) and the [GitHub CLI](https://cli.github.com/) (`gh auth login`).
+You need [Claude Code](https://code.claude.com/docs/en/quickstart) (open it once and sign in; the VS Code extension alone is enough, the installer finds it), [Git](https://git-scm.com/), [Python 3](https://www.python.org/), [Node.js LTS](https://nodejs.org/) and the [GitHub CLI](https://cli.github.com/) (`gh auth login`).
 
 1. [Download the zip](https://github.com/berkantshn/safe-vibe-coding-kit/releases/latest/download/safe-vibe-coding-kit.zip) and extract it.
 2. Open a terminal in that folder and run:
@@ -141,7 +141,7 @@ Bu kuralları kendi projelerimde kullanmanın gerçek sonuçları:
 
 ### Kurulum
 
-Gerekenler: [Claude Code](https://code.claude.com/docs/en/quickstart) (bir kez açıp giriş yap), [Git](https://git-scm.com/), [Python 3](https://www.python.org/), [Node.js LTS](https://nodejs.org/) ve [GitHub CLI](https://cli.github.com/) (`gh auth login`).
+Gerekenler: [Claude Code](https://code.claude.com/docs/en/quickstart) (bir kez açıp giriş yap; sadece VS Code eklentisi de yeterli, yükleyici onu bulur), [Git](https://git-scm.com/), [Python 3](https://www.python.org/), [Node.js LTS](https://nodejs.org/) ve [GitHub CLI](https://cli.github.com/) (`gh auth login`).
 
 1. [Zip'i indir](https://github.com/berkantshn/safe-vibe-coding-kit/releases/latest/download/safe-vibe-coding-kit.zip) ve çıkart.
 2. O klasörde bir terminal aç ve çalıştır:
