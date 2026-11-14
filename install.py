@@ -72,6 +72,10 @@ PREREQUISITES = {
     "npm": "Node.js",
 }
 
+# Claude Code sadece editör eklentisi olarak kuruluysa terminalde `claude` komutu
+# olmaz; eklenti kendi claude programını bu editörlerin eklenti klasöründe taşır
+EDITOR_DIRS = [".vscode", ".vscode-insiders", ".cursor"]
+
 # Ekrana yazılan metinler: kullanıcının seçtiği dilde gösterilir
 TEXT = {
     "title": {"en": "Safe Vibe Coding Kit setup", "tr": "Safe Vibe Coding Kit kurulumu"},
@@ -95,6 +99,7 @@ TEXT = {
         "en": "Without the claude command, plugins cannot be installed. Install Claude Code first.",
         "tr": "claude komutu olmadan plugin kurulamaz. Önce Claude Code'u kur.",
     },
+    "claude_from_editor": {"en": "claude (from the editor extension: {})", "tr": "claude (editör eklentisinden: {})"},
     "no_plugins_file": {"en": "plugins.json not found", "tr": "plugins.json bulunamadı"},
     "backup_at": {"en": "Backups of changed files", "tr": "Değişen dosyaların yedeği"},
     "lsp_skipped": {"en": "optional, not selected", "tr": "isteğe bağlı, seçilmedi"},
@@ -209,6 +214,20 @@ def parse_version(v: str) -> tuple[int, ...] | None:
         return None
 
 
+def editor_claude() -> Path | None:
+    """Editör eklentisinin içindeki en yeni claude programını bulur, yoksa None."""
+    exe = "claude.exe" if sys.platform == "win32" else "claude"
+    candidates = []
+    for editor in EDITOR_DIRS:
+        for folder in (Path.home() / editor / "extensions").glob("anthropic.claude-code-*"):
+            # Klasör adı örneği: anthropic.claude-code-2.1.325-win32-x64
+            version = parse_version(folder.name.removeprefix("anthropic.claude-code-").split("-")[0])
+            path = folder / "resources" / "native-binary" / exe
+            if version and path.exists():
+                candidates.append((version, path))
+    return max(candidates)[1] if candidates else None
+
+
 def load_settings() -> dict:
     try:
         return json.loads(SETTINGS_FILE.read_text(encoding="utf-8"))
@@ -280,9 +299,17 @@ def main() -> int:
 
     # 1) Gerekli programlar
     section("sec_prereq")
+    claude_ext = None
+    if not shutil.which("claude"):
+        claude_ext = editor_claude()
+        if claude_ext:
+            # Bu çalıştırma boyunca claude komutu eklentideki programı kullansın
+            os.environ["PATH"] = f"{claude_ext.parent}{os.pathsep}{os.environ.get('PATH', '')}"
     missing_programs = set()
     for program, where in PREREQUISITES.items():
-        if shutil.which(program):
+        if program == "claude" and claude_ext:
+            report("ok", t("claude_from_editor").format(claude_ext))
+        elif shutil.which(program):
             report("ok", program)
         else:
             missing_programs.add(program)
