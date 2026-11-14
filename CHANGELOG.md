@@ -4,6 +4,11 @@ Bu proje [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) formatını ta
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-11-14
+
+### Düzeltilenler
+- Claude Code sadece VS Code eklentisi olarak kuruluysa yükleyici "claude komutu yok" diyerek duruyordu; artık eklentinin içindeki programı bulup kullanıyor.
+
 ## [1.1.0] - 2026-11-13
 
 ### Eklenenler
